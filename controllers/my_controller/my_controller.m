@@ -13,8 +13,9 @@
 TIME_STEP = 64;
 
 % get and enable devices, e.g.:
-%  camera = wb_robot_get_device('camera');
-%  wb_camera_enable(camera, TIME_STEP);
+camera = wb_robot_get_device('camera');
+wb_camera_enable(camera, TIME_STEP);
+
 motor_left_front = wb_robot_get_device('motor_left_front');
 motor_left_back = wb_robot_get_device('motor_left_back');
 motor_right_front = wb_robot_get_device('motor_right_front');
@@ -50,10 +51,11 @@ wb_motor_set_velocity(motor_right_back, velocity);
 end
   disp(distance)
   
-
+  my_image = wb_camera_get_image(camera);
+  imshow(my_image)
+  
   % read the sensors, e.g.:
-  %  rgb = wb_camera_get_image(camera);
-
+ 
   % Process here sensor data, images, etc.
 
   % send actuator commands, e.g.:
