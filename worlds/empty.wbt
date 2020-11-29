@@ -3,8 +3,11 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.030969220179350852 -0.9990661074502802 -0.030130057179302644 4.761465598645179
-  position 0.8174685299493496 0.09465738127161652 -0.018679125416545934
+  orientation 0.027558364193364746 -0.9990057000070203 -0.03504494138202038 4.49268115513451
+  position 2.6567678375836525 0.39334835541743607 -0.0761912626611539
+}
+WoodenBox {
+  translation 0 0.3 0.7
 }
 TinkerbotsBase {
   translation 0 0.025 1.01962e-08
@@ -13,19 +16,18 @@ TinkerbotsBase {
   controllerArgs [
     ""
   ]
-  upSlot TinkerbotsDistanceSensor {
-    translation 0 -0.04 -0.04
-    rotation 0 0 1 3.141592653589793
-  }
   leftSlot TinkerbotsCube {
     frontSlot TinkerbotsMotor {
+      name "motor_left_back"
       backSlot TinkerbotsAxle {
         endSlot TinkerbotsWheel {
         }
       }
     }
     backSlot TinkerbotsMotor {
-      frontSlot TinkerbotsAxle {
+      rotation 0 0 1 -3.141592653589793
+      name "motor_left_front"
+      backSlot TinkerbotsAxle {
         endSlot TinkerbotsWheel {
         }
       }
@@ -33,16 +35,25 @@ TinkerbotsBase {
   }
   rightSlot TinkerbotsCube {
     frontSlot TinkerbotsMotor {
-      backSlot TinkerbotsAxle {
+      rotation 0 0 1 -3.141592653589793
+      name "motor_right_back"
+      frontSlot TinkerbotsAxle {
         endSlot TinkerbotsWheel {
         }
       }
     }
     backSlot TinkerbotsMotor {
+      name "motor_right_front"
       frontSlot TinkerbotsAxle {
         endSlot TinkerbotsWheel {
         }
       }
+    }
+  }
+  backSlot TinkerbotsCube {
+    frontSlot TinkerbotsDistanceSensor {
+      rotation 0 0 1 -3.141592653589793
+      name "distance_sensor"
     }
   }
 }
