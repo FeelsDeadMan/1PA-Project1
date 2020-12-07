@@ -7,8 +7,8 @@
 
 % uncomment the next two lines if you want to use
 % MATLAB's desktop to interact with the controller:
-desktop;
-keyboard;
+% desktop;
+% keyboard;
 
 TIME_STEP = 64;
 
@@ -70,7 +70,6 @@ while wb_robot_step(TIME_STEP) ~= -1
     
     % if your code plots some graphics, it needs to flushed like this:
     drawnow;
-    prev_dist = distance;
 end
 
 % cleanup code goes here: write data to files, etc.
