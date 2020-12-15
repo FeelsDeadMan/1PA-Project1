@@ -22,7 +22,7 @@ motor_right_front = wb_robot_get_device('motor_right_front');
 motor_right_back = wb_robot_get_device('motor_right_back');
 distance_sensor = wb_robot_get_device('distance_sensor');
 
-velocity = 2;
+velocity = 5;
 rotation_counter = 0;
 
 wb_motor_set_position(motor_left_front, inf);
@@ -43,17 +43,15 @@ wb_distance_sensor_enable(distance_sensor, TIME_STEP);
 while wb_robot_step(TIME_STEP) ~= -1
     distance = wb_distance_sensor_get_value(distance_sensor);
     if rotation_counter > 0
-        velocity = 2;
         rotation_counter = rotation_counter - 1;
         wb_motor_set_velocity(motor_right_front, -(velocity));
         wb_motor_set_velocity(motor_right_back, -(velocity));
     else
-        velocity = 2;
         wb_motor_set_velocity(motor_right_front, velocity);
         wb_motor_set_velocity(motor_right_back, velocity);
     end
-    if distance < 50
-        rotation_counter = 26;
+    if distance < 100
+        rotation_counter = randi([1 20], 1);
     end
     
     disp(distance)

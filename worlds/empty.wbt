@@ -3,14 +3,33 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.1974992854765465 0.9801190498262407 0.01899158771563804 0.14931920746718177
-  position -0.036145053000751895 0.08940487837769995 0.7076244423078394
+  orientation 0.09687623624641958 -0.9870886030913117 -0.12755816123624023 4.602128886499902
+  position 1.6441065915996054 0.4793136422330661 0.11229721957601252
 }
-WoodenBox {
-  translation 0 0.3 0.7
+Solid {
+  translation 0.27 0.01 0.139998
+  rotation 0.6776642109941733 -0.519987161900628 0.5199851619000053 1.95044
+  children [
+    Shape {
+      appearance BrushedSteel {
+      }
+      geometry Capsule {
+        height 0.007
+        radius 0.003
+        subdivision 100
+      }
+    }
+  ]
+  boundingObject Capsule {
+    height 0.007
+    radius 0.003
+    subdivision 100
+  }
+  physics Physics {
+  }
 }
 TinkerbotsBase {
-  translation 0 0.025 1.01962e-08
+  translation 0.27 0.025 0.57
   rotation 1 0 0 -1.5707953071795862
   controller "my_controller"
   controllerArgs [
@@ -68,5 +87,5 @@ TexturedBackground {
 TexturedBackgroundLight {
 }
 RectangleArena {
-  floorSize 10 10
+  floorSize 1.5 1.5
 }
