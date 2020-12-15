@@ -23,7 +23,10 @@ motor_right_back = wb_robot_get_device('motor_right_back');
 distance_sensor = wb_robot_get_device('distance_sensor');
 
 velocity = 2.5;
-rotation_counter = 0;
+right_rotation = 0;
+left_rotation = 0;
+count_rotations = 0;
+prev_distance = 128;
 
 wb_motor_set_position(motor_left_front, inf);
 wb_motor_set_velocity(motor_left_front, velocity);
@@ -42,9 +45,9 @@ wb_distance_sensor_enable(distance_sensor, TIME_STEP);
 %
 while wb_robot_step(TIME_STEP) ~= -1
     distance = wb_distance_sensor_get_value(distance_sensor);
-    if rotation_counter > 0
+    if right_rotation > 0
         velocity = 2.5;
-        rotation_counter = rotation_counter - 1;
+        right_rotation = right_rotation - 1;
         wb_motor_set_velocity(motor_right_front, -(velocity));
         wb_motor_set_velocity(motor_right_back, -(velocity));
     else
@@ -52,12 +55,33 @@ while wb_robot_step(TIME_STEP) ~= -1
         wb_motor_set_velocity(motor_right_front, velocity);
         wb_motor_set_velocity(motor_right_back, velocity);
     end
-    if distance < 100
-        rotation_counter = 35;
+    if left_rotation > 0
+        velocity = 2.5;
+        left_rotation = left_rotation - 1;
+        wb_motor_set_velocity(motor_left_front, -(velocity));
+        wb_motor_set_velocity(motor_left_back, -(velocity));
+    else
+        velocity = 2.5;
+        wb_motor_set_velocity(motor_left_front, velocity);
+        wb_motor_set_velocity(motor_left_back, velocity);
     end
-    
+    if (right_rotation == 0) && (left_rotation == 0)
+        if distance < 120
+            count_rotations = count_rotations + 1;
+            if count_rotations == 1
+                right_rotation = 35;
+            elseif count_rotations == 2
+                left_rotation = 70;
+            elseif count_rotations == 3
+                left_rotation = 35;
+            end
+        end
+    end
+    if (count_rotations >= 1) && (distance == prev_distance) && (right_rotation == 0) && (left_rotation == 0)
+        count_rotations = 0;
+    end
+    prev_distance = distance;
     disp(distance)
-    
     my_image = wb_camera_get_image(camera);
     imshow(my_image)
     
