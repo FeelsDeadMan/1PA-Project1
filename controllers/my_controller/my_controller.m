@@ -22,7 +22,7 @@ motor_right_front = wb_robot_get_device('motor_right_front');
 motor_right_back = wb_robot_get_device('motor_right_back');
 distance_sensor = wb_robot_get_device('distance_sensor');
 
-velocity = 5;
+velocity = 1;
 rotation_counter = 0;
 
 wb_motor_set_position(motor_left_front, inf);
@@ -41,6 +41,8 @@ wb_distance_sensor_enable(distance_sensor, TIME_STEP);
 % and leave the loop when Webots signals the termination
 %
 while wb_robot_step(TIME_STEP) ~= -1
+
+
     distance = wb_distance_sensor_get_value(distance_sensor);
     if rotation_counter > 0
         rotation_counter = rotation_counter - 1;
@@ -58,6 +60,18 @@ while wb_robot_step(TIME_STEP) ~= -1
     
     my_image = wb_camera_get_image(camera);
     imshow(my_image)
+    
+    gray = rgb2gray(my_image);
+    BW = segmentImage(gray);
+    properties = filterRegions(BW);
+    [tictac_count, ~] = size(properties);
+    Boxes = zeros(tictac_count,4)
+    for i = 1:tictac_count
+    Boxes(i,:) = properties(i).BoundingBox
+    end
+
+    display_out = insertShape(my_image,'rectangle', [Boxes], 'Color', {'white'});
+    imshow(display_out);
     
     % read the sensors, e.g.:
     
