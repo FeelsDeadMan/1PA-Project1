@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.09687623624641958 -0.9870886030913117 -0.12755816123624023 4.602128886499902
-  position 1.6441065915996054 0.4793136422330661 0.11229721957601252
+  orientation 0.26899561457621796 -0.9255255571770115 -0.26654043286328066 4.724752911961383
+  position 0.8697977812614526 0.5236364345471625 0.5456661996044982
 }
 Solid {
   translation 0.27 0.01 0.139998
@@ -35,6 +35,49 @@ TinkerbotsBase {
   controllerArgs [
     ""
   ]
+  upSlot TinkerbotsTwister {
+    slot TinkerbotsPivot {
+      rotation 0 1 0 0
+      name "pivot_1"
+      slot TinkerbotsPivot {
+        translation 0 0 0.06
+        name "pivot_2"
+        slot TinkerbotsGrabber {
+          translation 0 0 0.06
+          fingerASlot TinkerbotsFinger {
+          }
+          fingerBSlot TinkerbotsFinger {
+          }
+          fingerCSlot TinkerbotsFinger {
+          }
+        }
+        ASlot TinkerbotsAxle {
+          length "7cm"
+        }
+        BSlot TinkerbotsAxle {
+          length "7cm"
+        }
+        CSlot TinkerbotsAxle {
+          length "7cm"
+        }
+        DSlot TinkerbotsAxle {
+          length "7cm"
+        }
+      }
+      ASlot TinkerbotsAxle {
+        length "7cm"
+      }
+      BSlot TinkerbotsAxle {
+        length "7cm"
+      }
+      CSlot TinkerbotsAxle {
+        length "7cm"
+      }
+      DSlot TinkerbotsAxle {
+        length "7cm"
+      }
+    }
+  }
   leftSlot TinkerbotsCube {
     frontSlot TinkerbotsMotor {
       name "motor_left_back"

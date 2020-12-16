@@ -21,9 +21,14 @@ motor_left_back = wb_robot_get_device('motor_left_back');
 motor_right_front = wb_robot_get_device('motor_right_front');
 motor_right_back = wb_robot_get_device('motor_right_back');
 distance_sensor = wb_robot_get_device('distance_sensor');
+twister = wb_robot_get_device('twister');
+pivot_1 = wb_robot_get_device('pivot_1');
+pivot_2 = wb_robot_get_device('pivot_2');
+grabber = wb_robot_get_device('grabber');
 
 velocity = 5;
 rotation_counter = 0;
+
 
 wb_motor_set_position(motor_left_front, inf);
 wb_motor_set_velocity(motor_left_front, velocity);
@@ -33,6 +38,10 @@ wb_motor_set_position(motor_right_front, inf);
 wb_motor_set_velocity(motor_right_front, velocity);
 wb_motor_set_position(motor_right_back, inf);
 wb_motor_set_velocity(motor_right_back, velocity);
+wb_motor_set_position(pivot_1, 3);
+wb_motor_set_velocity(pivot_1, velocity);
+wb_motor_set_position(pivot_2, 3);
+wb_motor_set_velocity(pivot_2, velocity);
 
 wb_distance_sensor_enable(distance_sensor, TIME_STEP);
 
