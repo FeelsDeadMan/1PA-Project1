@@ -1,0 +1,58 @@
+function [display_out] = camera_vision(my_image)
+%camera_vision Object detection using camera
+%  Image acquisition, procesing and detection of objects(tictacs) and
+%  moving robot for grabber reach
+
+%   process image from camera
+    gray = rgb2gray(my_image);
+    BW = segmentImage(gray);
+%   load data from procesed image
+    properties = filterRegions(BW);
+    [tictac_count, ~] = size(properties);
+    
+    Boxes = zeros(tictac_count,4);
+    u1 = zeros(tictac_count,1);
+    u2 = zeros(tictac_count,1);
+%   safe BoundingBox(renctangle coordinates) from properties
+    for i = 1:tictac_count
+    Boxes(i,:) = properties(i).BoundingBox;
+    u1(i) = (2*Boxes(i,1) + Boxes(i,3))/2;
+    u2(i) = (2*Boxes(i,2) + Boxes(i,4))/2;
+    end
+%   display Bounding boxes into our camera image which surrounds our objects 
+    display_out = insertShape(my_image,'rectangle', [Boxes], 'Color', {'white'});
+    imshow(display_out);
+
+    axis on
+    hold on;
+    % Plot crosses which indicates center of our objects
+    plot(u1(1:4,1),u2(1:4,1), 'r+', 'MarkerSize', 20, 'LineWidth', 1);
+    % Position where grabber pickes up TicTac
+    Pickup_position = 255;
+    plot(Pickup_position,Pickup_position, 'b+', 'MarkerSize', 30, 'LineWidth', 2);
+%   Robot turns based on object pixel coordinates in image and stops when
+%   TicTac is in right position to be picked up
+
+%   If there is TicTac in image
+    if tictac_count > 0
+        % T
+        [~, IndexesOfMaxes] = max(u2(:));
+         if u1(IndexesOfMaxes) < Pickup_position
+            wb_motor_set_velocity(motor_left_front, -(velocity));
+            wb_motor_set_velocity(motor_left_back, -(velocity));
+         elseif u1(IndexesOfMaxes) > Pickup_position
+            wb_motor_set_velocity(motor_right_front, -(velocity));
+            wb_motor_set_velocity(motor_right_back, -(velocity));
+         elseif u1(IndexesOfMaxes) == Pickup_position
+            wb_motor_set_velocity(motor_left_front, 0);
+            wb_motor_set_velocity(motor_left_back, 0);
+            wb_motor_set_velocity(motor_right_front, 0);
+            wb_motor_set_velocity(motor_right_back, 0);
+        else
+            wb_motor_set_velocity(motor_left_front, velocity);
+            wb_motor_set_velocity(motor_left_back, velocity);
+            wb_motor_set_velocity(motor_right_front, velocity);
+            wb_motor_set_velocity(motor_right_back, velocity);
+        end
+    end
+    end

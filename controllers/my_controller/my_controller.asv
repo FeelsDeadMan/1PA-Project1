@@ -27,11 +27,6 @@ distance_sensor = wb_robot_get_device('distance_sensor');
 velocity = 2;
 rotation_counter = 0;
 
-wb_motor_set_acceleration(motor_left_front, inf);
-wb_motor_set_acceleration(motor_left_back, inf);
-wb_motor_set_acceleration(motor_right_front, inf);
-wb_motor_set_acceleration(motor_right_back, inf);
-
 wb_motor_set_position(motor_left_front, inf);
 wb_motor_set_velocity(motor_left_front, velocity);
 wb_motor_set_position(motor_left_back, inf);
@@ -48,6 +43,8 @@ wb_distance_sensor_enable(distance_sensor, TIME_STEP);
 % and leave the loop when Webots signals the termination
 %
 while wb_robot_step(TIME_STEP) ~= -1
+
+    
     distance = wb_distance_sensor_get_value(distance_sensor);
     if rotation_counter > 0
         rotation_counter = rotation_counter - 1;
@@ -66,45 +63,42 @@ while wb_robot_step(TIME_STEP) ~= -1
     imshow(display_out);
     
     a = Pixels_left(IndexesOfMaxes);
-    b = Pixels_top(IndexesOfMaxes);
-    position = Constants.Pickup_position;
+    b
+    c
+    d
     
 %   Robot turns based on object pixel coordinates in image and stops when
 %   TicTac is in right position to be picked up
 
 %   If there is TicTac in image
-%     if tictac_count > 0
+    if tictac_count > 0
         % Turn left
-            if position > (a+30)  
+        position = Constants.Pickup_position;
+        switch position
+            case position > Pixels_left(IndexesOfMaxes)
             wb_motor_set_velocity(motor_left_front, -(velocity));
             wb_motor_set_velocity(motor_left_back, -(velocity));
-            elseif position >= a
-            wb_motor_set_velocity(motor_left_front, 0);
-            wb_motor_set_velocity(motor_left_back, 0);
-            else
-            wb_motor_set_velocity(motor_left_front, velocity);
-            wb_motor_set_velocity(motor_left_back, velocity);
-            end
         % Turn right
-            if position < (a-30)  
+            case position < Pixels_left(IndexesOfMaxes)
             wb_motor_set_velocity(motor_right_front, -(velocity));
             wb_motor_set_velocity(motor_right_back, -(velocity));
-            elseif position <= a
-            wb_motor_set_velocity(motor_right_front, 0);
-            wb_motor_set_velocity(motor_right_back, 0);
-            else
-            wb_motor_set_velocity(motor_right_front, velocity);
-            wb_motor_set_velocity(motor_right_back, velocity);
-            end
         % Stop
-            if position <= b
+            case position <= Pixels_top(IndexesOfMaxes)
             wb_motor_set_velocity(motor_left_front, 0);
             wb_motor_set_velocity(motor_left_back, 0);
             wb_motor_set_velocity(motor_right_front, 0);
             wb_motor_set_velocity(motor_right_back, 0);
-            end
+        end
         % Continue
+        else
+            wb_motor_set_velocity(motor_left_front, velocity);
+            wb_motor_set_velocity(motor_left_back, velocity);
+            wb_motor_set_velocity(motor_right_front, velocity);
+            wb_motor_set_velocity(motor_right_back, velocity);
+     end
+    
 
+    
     % read the sensors, e.g.:
     
     % Process here sensor data, images, etc.
