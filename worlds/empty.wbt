@@ -71,6 +71,39 @@ TinkerbotsBase {
   controllerArgs [
     ""
   ]
+  upSlot TinkerbotsTwister {
+    slot TinkerbotsPivot {
+      rotation 0 1 0 0
+      name "pivot_1"
+      slot TinkerbotsPivot {
+        translation 0 0 0.06
+        name "pivot_2"
+        slot TinkerbotsPivot {
+          name "pivot_3"
+          slot TinkerbotsGrabber {
+            fingerASlot TinkerbotsFinger {
+            }
+            fingerBSlot TinkerbotsFinger {
+            }
+            fingerCSlot TinkerbotsFinger {
+            }
+          }
+        }
+      }
+      ASlot TinkerbotsAxle {
+        length "7cm"
+      }
+      BSlot TinkerbotsAxle {
+        length "7cm"
+      }
+      CSlot TinkerbotsAxle {
+        length "7cm"
+      }
+      DSlot TinkerbotsAxle {
+        length "7cm"
+      }
+    }
+  }
   leftSlot TinkerbotsCube {
     frontSlot TinkerbotsMotor {
       name "motor_left_back"
