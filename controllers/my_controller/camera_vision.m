@@ -28,6 +28,7 @@ function [display_out, tictac_count,IndexesOfMaxes, Pixels_left, Pixels_top] = c
     % Plot crosses which indicates center of our objects
     plot(Pixels_left(1:tictac_count),Pixels_top(1:tictac_count), 'r+', 'MarkerSize', 20, 'LineWidth', 1);
     % Plot cros at pickup position
-    plot(Constants.Pickup_position,Constants.Pickup_position, 'b+', 'MarkerSize', 30, 'LineWidth', 2);
+    plot(Constants.Pickup_position(2),Constants.Pickup_position(1), 'b+', 'MarkerSize', 30, 'LineWidth', 2);
 
+  
     end

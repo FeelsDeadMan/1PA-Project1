@@ -3,66 +3,9 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.06969159866716806 -0.967372452963429 -0.24358493040977086 2.6854081320580803
-  position -0.19796215869757133 0.34720021978725535 -0.39095635234047127
+  orientation -0.2641446531628613 -0.9525849842775257 -0.1510279773236011 1.1767933337621257
+  position -0.8749502703039115 0.41534010741262256 0.5678346533479817
   follow "rectangle arena"
-}
-Solid {
-  translation -0.000459786 0.00299937 0.302463
-  rotation 0.5773529358523396 -0.5773499358526729 0.5773479358528951 2.0944
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          ambientIntensity 1
-          diffuseColor 1 1 1
-          emissiveColor 1 1 1
-          specularColor 1 0 0
-        }
-      }
-      geometry Capsule {
-        height 0.007
-        radius 0.003
-        subdivision 100
-      }
-    }
-  ]
-  boundingObject Capsule {
-    height 0.007
-    radius 0.003
-    subdivision 100
-  }
-  physics Physics {
-  }
-}
-Solid {
-  translation -0.00045948 0.00299832 0.472463
-  rotation 0.5773529358523396 -0.5773499358526729 0.5773479358528951 2.0944
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          ambientIntensity 1
-          diffuseColor 1 1 1
-          emissiveColor 1 1 1
-          specularColor 1 0 0
-        }
-      }
-      geometry Capsule {
-        height 0.007
-        radius 0.003
-        subdivision 100
-      }
-    }
-  ]
-  name "solid(1)"
-  boundingObject Capsule {
-    height 0.007
-    radius 0.003
-    subdivision 100
-  }
-  physics Physics {
-  }
 }
 TinkerbotsBase {
   translation 0 0.025 0.01
@@ -165,7 +108,7 @@ RectangleArena {
   }
 }
 Solid {
-  translation 0.0395401 0.0029999 0.252463
+  translation 0.0795401 0.0029982 0.512463
   rotation 0.5773529358523396 -0.5773499358526729 0.5773479358528951 2.0944
   children [
     Shape {
@@ -185,35 +128,6 @@ Solid {
     }
   ]
   name "solid(2)"
-  boundingObject Capsule {
-    height 0.007
-    radius 0.003
-    subdivision 100
-  }
-  physics Physics {
-  }
-}
-Solid {
-  translation -0.02 0.00299902 0.372463
-  rotation 0.5773529358523396 -0.5773499358526729 0.5773479358528951 2.0944
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          ambientIntensity 1
-          diffuseColor 1 1 1
-          emissiveColor 1 1 1
-          specularColor 1 0 0
-        }
-      }
-      geometry Capsule {
-        height 0.007
-        radius 0.003
-        subdivision 100
-      }
-    }
-  ]
-  name "solid(3)"
   boundingObject Capsule {
     height 0.007
     radius 0.003
