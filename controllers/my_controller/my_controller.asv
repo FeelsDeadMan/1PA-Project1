@@ -11,12 +11,15 @@
 % keyboard;
 clear
 
+time = 0;
 
 TIME_STEP = 64;
 
 % get and enable devices, e.g.:
 camera = wb_robot_get_device('camera');
 wb_camera_enable(camera, TIME_STEP);
+start_time = wb_robot_get_name;
+
 
 motor_left_front = wb_robot_get_device('motor_left_front');
 motor_left_back = wb_robot_get_device('motor_left_back');
@@ -68,7 +71,9 @@ wb_distance_sensor_enable(distance_sensor, TIME_STEP);
 % and leave the loop when Webots signals the termination
 %
 while wb_robot_step(TIME_STEP) ~= -1
+    
     distance = wb_distance_sensor_get_value(distance_sensor);
+    display(distance)
     if rotation_counter > 0
         rotation_counter = rotation_counter - 1;
         wb_motor_set_velocity(motor_right_front, -(velocity));
@@ -128,12 +133,30 @@ while wb_robot_step(TIME_STEP) ~= -1
             wb_motor_set_velocity(motor_left_back, 0);
             wb_motor_set_velocity(motor_right_front, 0);
             wb_motor_set_velocity(motor_right_back, 0);
+            
             Pivot_1 = 1.25;
             Pivot_2 = 1.5;
             Pivot_3 = 0.35;
             grabber_pos = 0.5;
-            time = 
             end
+            if distance < 21.5 && time < 3
+            time = time + 1;
+            grabber_pos = 0;
+            end
+            if time == 3
+                
+            end
+            end
+%          
+%             start_time = wb_robot_get_time()
+%             while start_time + 5 > wb_robot_get_time() 
+%             if wb_robot_step(TIME_STEP) == -1
+%             
+%             wb_robot_cleanup();
+%             end
+%             end
+           
+            
         % Continue
         
     % read the sensors, e.g.:

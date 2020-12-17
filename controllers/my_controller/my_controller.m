@@ -11,8 +11,8 @@
 % keyboard;
 clear
 
-time1 = 0;
-time2 = 5;
+time = 0;
+
 TIME_STEP = 64;
 
 % get and enable devices, e.g.:
@@ -139,10 +139,14 @@ while wb_robot_step(TIME_STEP) ~= -1
             Pivot_3 = 0.35;
             grabber_pos = 0.5;
             end
-            if distance < 21.5
-            time1 = time1 + 1;
-            if 
+            if distance < 21.5 && time < 3
+            time = time + 1;
             grabber_pos = 0;
+            end
+            if time == 3
+            Pivot_1 = -1.25;
+            Pivot_2 = -1.5;
+            Pivot_3 = -0.35;    
             end
             end
 %          
