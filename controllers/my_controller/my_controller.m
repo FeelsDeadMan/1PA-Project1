@@ -12,6 +12,7 @@
 clear
 
 time = 0;
+time1 = 0;
 
 TIME_STEP = 64;
 
@@ -34,7 +35,7 @@ finger_A = wb_robot_get_device('grabber finger A');
 finger_B = wb_robot_get_device('grabber finger B');
 finger_C = wb_robot_get_device('grabber finger C');
 
-velocity = 2;
+velocity = 2.5;
 rotation_counter = 0;
 
 Pivot_1 = -1.25;
@@ -87,8 +88,8 @@ while wb_robot_step(TIME_STEP) ~= -1
         wb_motor_set_velocity(motor_right_front, velocity);
         wb_motor_set_velocity(motor_right_back, velocity);
     end
-    if distance < 100
-        rotation_counter = randi([1 20], 1);
+    if distance < 70 && distance > 30
+        rotation_counter = randi([1 20], 1);  
     end
 
     my_image = wb_camera_get_image(camera);
@@ -101,20 +102,23 @@ while wb_robot_step(TIME_STEP) ~= -1
     wb_motor_set_position(finger_B, grabber_pos);
     wb_motor_set_position(finger_C, grabber_pos);
      
-    a = Pixels_left(IndexesOfMaxes);
-    b = Pixels_top(IndexesOfMaxes);
+    Horizontal_position = Pixels_left(IndexesOfMaxes);
+    Vertical_position = Pixels_top(IndexesOfMaxes);
     position = Constants.Pickup_position;
     
 %   Robot turns based on object pixel coordinates in image and stops when
 %   TicTac is in right position to be picked up
 
 %   If there is TicTac in image
-%      if tictac_count > 0
+
         % Turn left
-            if position(2) > (a+30)  
+            if position(2) > (Horizontal_position + 30)
+            
             wb_motor_set_velocity(motor_left_front, -(velocity));
             wb_motor_set_velocity(motor_left_back, -(velocity));
-            elseif position(2) > a
+            
+            elseif (position(2) > Horizontal_position) & (time1 < 5)
+            time1 = time1 + 1;
             wb_motor_set_velocity(motor_left_front, 0);
             wb_motor_set_velocity(motor_left_back, 0);
             else
@@ -122,10 +126,10 @@ while wb_robot_step(TIME_STEP) ~= -1
             wb_motor_set_velocity(motor_left_back, velocity);
             end
         % Turn right
-            if position(2) < (a-30)  
+            if position(2) < (Horizontal_position - 30)
             wb_motor_set_velocity(motor_right_front, -(velocity));
             wb_motor_set_velocity(motor_right_back, -(velocity));
-            elseif position(2) < a
+            elseif position(2) < Horizontal_position 
             wb_motor_set_velocity(motor_right_front, 0);
             wb_motor_set_velocity(motor_right_back, 0);
             else
@@ -133,51 +137,33 @@ while wb_robot_step(TIME_STEP) ~= -1
             wb_motor_set_velocity(motor_right_back, velocity);
             end
         % Stop
-            if position(1) < b
+            if position(1) <= Vertical_position
+            time1 = 0;  
             wb_motor_set_velocity(motor_left_front, 0);
             wb_motor_set_velocity(motor_left_back, 0);
             wb_motor_set_velocity(motor_right_front, 0);
             wb_motor_set_velocity(motor_right_back, 0);
-            
+
+        % Grabber movement    
             Pivot_1 = 1.25;
             Pivot_2 = 1.5;
             Pivot_3 = 0.37;
             grabber_pos = 0.7;
             end
-            if distance < 21.5 && time < 16
+            if distance < 21.5 && time < 8
             time = time + 1;
             grabber_pos = 0.1;
             end
-            if time >= 16 && time < 45
+            if time >= 8 && time < 32
             Pivot_1 = 0;
             Pivot_2 = -1.5;
             Pivot_3 = -1.5;
             time = time + 1;
-            wb_motor_get_force_feedback(finger_A)
             end
-            if time == 45
+            if time == 32
             grabber_pos = 0.5;
             time = 0;
             end
-           
-%          
-%             start_time = wb_robot_get_time()
-%             while start_time + 5 > wb_robot_get_time() 
-%             if wb_robot_step(TIME_STEP) == -1
-%             
-%             wb_robot_cleanup();
-%             end
-%             end
-           
-            
-        % Continue
-        
-    % read the sensors, e.g.:
-    
-    % Process here sensor data, images, etc.
-    
-    % send actuator commands, e.g.:
-    %  wb_motor_set_postion(motor, 10.0);
     
     % if your code plots some graphics, it needs to flushed like this:
     drawnow;
