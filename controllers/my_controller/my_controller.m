@@ -173,11 +173,11 @@ while wb_robot_step(TIME_STEP) ~= -1
                 count_rotations = count_rotations + 1;
                 switch count_rotations
                     case 1
-                        right_rotation = 30;
+                        right_rotation = 40;
                     case 2 
                         left_rotation = 60;
                     case 3
-                        left_rotation = 30;
+                        left_rotation = 40;
                 end
             end
         end

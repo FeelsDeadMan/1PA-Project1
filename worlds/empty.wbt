@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.05460534245244193 -0.9819212158769612 -0.18124288230537958 2.651271405814395
-  position -1.5514973250684734 1.1748118281819717 -2.3385718937188575
+  orientation 0.025234589371386864 -0.957820541465322 -0.28625692279198195 3.364608530434038
+  position 0.7080514256159904 1.6838031111130989 -2.667756152851739
   follow "rectangle arena"
 }
 TinkerbotsBase {
@@ -125,6 +125,8 @@ TinkerbotsBase {
         endSlot TinkerbotsWheel {
         }
       }
+      backSlot TinkerbotsCubieFemaleCube {
+      }
     }
     backSlot TinkerbotsMotor {
       name "motor_right_front"
@@ -164,8 +166,8 @@ RectangleArena {
   }
 }
 Solid {
-  translation 0.100422 0.0164977 0.544323
-  rotation -0.935114083019432 0.25056002224471974 -0.2505620222448973 -1.6378453071795862
+  translation 0.19974 0.0164995 0.400587
+  rotation 0.5773512691779675 0.5773542691793664 -0.5773452691751703 2.0944
   scale 2 2 2
   children [
     Shape {
@@ -195,7 +197,7 @@ Solid {
 }
 Solid {
   translation 0.0195399 0.016499 0.349783
-  rotation -0.774598706934895 0.44721183079989546 -0.44721183079989546 -1.8234853071795865
+  rotation -0.677661719934667 -0.5199917850967996 0.5199837851001058 -1.950445307179586
   scale 2 2 2
   children [
     Shape {
@@ -224,37 +226,7 @@ Solid {
   }
 }
 Solid {
-  translation 0.16954 0.0164991 0.342463
-  rotation 0.5773529358523396 -0.5773499358526729 0.5773479358528951 2.0944
-  scale 2 2 2
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          ambientIntensity 1
-          diffuseColor 1 1 1
-          emissiveColor 1 1 1
-          specularColor 1 0 0
-        }
-      }
-      geometry Capsule {
-        height 0.007
-        radius 0.003
-        subdivision 100
-      }
-    }
-  ]
-  name "solid(3)"
-  boundingObject Capsule {
-    height 0.006
-    radius 0.005
-    subdivision 16
-  }
-  physics Physics {
-  }
-}
-Solid {
-  translation -0.00774855 0.0165001 -0.162187
+  translation -0.01482 0.0165001 -0.225826
   rotation -0.8628577427761052 0.3574048934551153 -0.3574048934551153 -1.7177753071795863
   scale 2 2 2
   children [
@@ -275,66 +247,6 @@ Solid {
     }
   ]
   name "solid(5)"
-  boundingObject Capsule {
-    height 0.005
-    radius 0.006
-    subdivision 16
-  }
-  physics Physics {
-  }
-}
-Solid {
-  translation -0.459781 0.0165 0.471382
-  rotation -0.6776638586186652 0.5199868915148861 -0.5199858915150948 -1.950445307179586
-  scale 2 2 2
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          ambientIntensity 1
-          diffuseColor 1 1 1
-          emissiveColor 1 1 1
-          specularColor 1 0 0
-        }
-      }
-      geometry Capsule {
-        height 0.007
-        radius 0.003
-        subdivision 100
-      }
-    }
-  ]
-  name "solid(4)"
-  boundingObject Capsule {
-    height 0.005
-    radius 0.006
-    subdivision 16
-  }
-  physics Physics {
-  }
-}
-Solid {
-  translation 0.101464 0.0165 0.189842
-  rotation -0.8628577427761052 0.3574048934551153 -0.3574048934551153 -1.7177753071795863
-  scale 2 2 2
-  children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          ambientIntensity 1
-          diffuseColor 1 1 1
-          emissiveColor 1 1 1
-          specularColor 1 0 0
-        }
-      }
-      geometry Capsule {
-        height 0.007
-        radius 0.003
-        subdivision 100
-      }
-    }
-  ]
-  name "solid(6)"
   boundingObject Capsule {
     height 0.005
     radius 0.006
@@ -374,7 +286,7 @@ Solid {
   }
 }
 Solid {
-  translation -0.165712 0.0164996 0.256599
+  translation 0.394288 0.0165039 0.316599
   rotation -0.5773506025156089 -0.5773536025135436 0.5773466025183629 -2.094395307179586
   scale 2 2 2
   children [
@@ -404,7 +316,7 @@ Solid {
   }
 }
 Solid {
-  translation -0.250239 0.0165 0.364765
+  translation -0.285594 0.0165 0.414262
   rotation -0.8628577427761052 0.3574048934551153 -0.3574048934551153 -1.7177753071795863
   scale 2 2 2
   children [
@@ -494,7 +406,7 @@ Solid {
   }
 }
 Solid {
-  translation -0.494118 0.0165 0.304591
+  translation 0.394529 0.0165022 0.0664854
   rotation -0.6776638586186652 0.5199868915148861 -0.5199858915150948 -1.950445307179586
   scale 2 2 2
   children [
@@ -554,7 +466,7 @@ Solid {
   }
 }
 Solid {
-  translation -0.430154 0.0165 -0.0748883
+  translation -0.351864 0.0165 -0.32362
   rotation -0.6776638586186652 0.5199868915148861 -0.5199858915150948 -1.950445307179586
   scale 2 2 2
   children [
@@ -584,7 +496,7 @@ Solid {
   }
 }
 Solid {
-  translation -0.387869 0.0165 0.276123
+  translation -0.450999 0.0165 0.272333
   rotation -0.6776638586186652 0.5199868915148861 -0.5199858915150948 -1.950445307179586
   scale 2 2 2
   children [
@@ -644,7 +556,7 @@ Solid {
   }
 }
 Solid {
-  translation -0.500171 0.0165 0.0308562
+  translation -0.528455 0.0164996 0.0591406
   rotation 0.2810871355422171 -0.6785993272254247 0.6785963272239781 2.59357
   scale 2 2 2
   children [
@@ -674,7 +586,7 @@ Solid {
   }
 }
 Solid {
-  translation -0.447902 0.0165 0.167979
+  translation 0.329918 0.0165063 -0.0848004
   rotation -0.774598706934895 0.44721183079989546 -0.44721183079989546 -1.8234853071795865
   scale 2 2 2
   children [
@@ -704,7 +616,7 @@ Solid {
   }
 }
 Solid {
-  translation -0.35991 0.0165 0.496385
+  translation -0.437182 0.0165 0.517089
   rotation -0.6776638586186652 0.5199868915148861 -0.5199858915150948 -1.950445307179586
   scale 2 2 2
   children [
@@ -734,8 +646,8 @@ Solid {
   }
 }
 Solid {
-  translation 0.281012 0.0165 -0.0480321
-  rotation -0.6776638586186652 0.5199868915148861 -0.5199858915150948 -1.950445307179586
+  translation 0.179062 0.0165 -0.196708
+  rotation 0.5773529358523396 -0.5773499358526729 0.5773479358528951 2.0944
   scale 2 2 2
   children [
     Shape {

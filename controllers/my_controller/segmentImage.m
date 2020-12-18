@@ -9,7 +9,7 @@ function [BW,maskedImage] = segmentImage(X)
 
 
 % Threshold image - manual threshold
-BW = X > 200;
+BW = X > 230;
 
 % Create masked image.
 maskedImage = X;
