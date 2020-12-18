@@ -101,8 +101,8 @@ while wb_robot_step(TIME_STEP) ~= -1
     wb_motor_set_position(finger_B, grabber_pos);
     wb_motor_set_position(finger_C, grabber_pos);
      
-    a = Pixels_left(IndexesOfMaxes);
-    b = Pixels_top(IndexesOfMaxes);
+    Horizontal_position = Pixels_left(IndexesOfMaxes);
+    Vertical_position = Pixels_top(IndexesOfMaxes);
     position = Constants.Pickup_position;
     
 %   Robot turns based on object pixel coordinates in image and stops when
@@ -111,10 +111,10 @@ while wb_robot_step(TIME_STEP) ~= -1
 %   If there is TicTac in image
 %      if tictac_count > 0
         % Turn left
-            if position(2) > (a+30)  
+            if position(2) > (Horizontal_position+30)  
             wb_motor_set_velocity(motor_left_front, -(velocity));
             wb_motor_set_velocity(motor_left_back, -(velocity));
-            elseif position(2) > a
+            elseif position(2) > Horizontal_position
             wb_motor_set_velocity(motor_left_front, 0);
             wb_motor_set_velocity(motor_left_back, 0);
             else
@@ -122,10 +122,10 @@ while wb_robot_step(TIME_STEP) ~= -1
             wb_motor_set_velocity(motor_left_back, velocity);
             end
         % Turn right
-            if position(2) < (a-30)  
+            if position(2) < (Horizontal_position-30)  
             wb_motor_set_velocity(motor_right_front, -(velocity));
             wb_motor_set_velocity(motor_right_back, -(velocity));
-            elseif position(2) < a
+            elseif position(2) < Horizontal_position
             wb_motor_set_velocity(motor_right_front, 0);
             wb_motor_set_velocity(motor_right_back, 0);
             else
@@ -133,12 +133,12 @@ while wb_robot_step(TIME_STEP) ~= -1
             wb_motor_set_velocity(motor_right_back, velocity);
             end
         % Stop
-            if position(1) < b
+            if position(1) < Vertical_position
             wb_motor_set_velocity(motor_left_front, 0);
             wb_motor_set_velocity(motor_left_back, 0);
             wb_motor_set_velocity(motor_right_front, 0);
             wb_motor_set_velocity(motor_right_back, 0);
-            
+        % Grabber movement    
             Pivot_1 = 1.25;
             Pivot_2 = 1.5;
             Pivot_3 = 0.37;
@@ -159,26 +159,7 @@ while wb_robot_step(TIME_STEP) ~= -1
             grabber_pos = 0.5;
             time = 0;
             end
-           
-%          
-%             start_time = wb_robot_get_time()
-%             while start_time + 5 > wb_robot_get_time() 
-%             if wb_robot_step(TIME_STEP) == -1
-%             
-%             wb_robot_cleanup();
-%             end
-%             end
-           
-            
-        % Continue
-        
-    % read the sensors, e.g.:
-    
-    % Process here sensor data, images, etc.
-    
-    % send actuator commands, e.g.:
-    %  wb_motor_set_postion(motor, 10.0);
-    
+          
     % if your code plots some graphics, it needs to flushed like this:
     drawnow;
 end
