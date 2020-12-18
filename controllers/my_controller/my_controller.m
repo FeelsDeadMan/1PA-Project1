@@ -36,7 +36,12 @@ finger_B = wb_robot_get_device('grabber finger B');
 finger_C = wb_robot_get_device('grabber finger C');
 
 velocity = 2.5;
-rotation_counter = 0;
+
+right_rotation = 0;
+left_rotation = 0;
+count_rotations = 0;
+prev_distance = 128;
+
 
 Pivot_1 = -1.25;
 Pivot_2 = -1.5;
@@ -80,17 +85,40 @@ wb_distance_sensor_enable(distance_sensor, TIME_STEP);
 while wb_robot_step(TIME_STEP) ~= -1
     
     distance = wb_distance_sensor_get_value(distance_sensor);
-    if rotation_counter > 0
-        rotation_counter = rotation_counter - 1;
+
+    if right_rotation > 0
+        right_rotation = right_rotation - 1;
         wb_motor_set_velocity(motor_right_front, -(velocity));
         wb_motor_set_velocity(motor_right_back, -(velocity));
     else
         wb_motor_set_velocity(motor_right_front, velocity);
         wb_motor_set_velocity(motor_right_back, velocity);
     end
-    if distance < 70 && distance > 30
-        rotation_counter = randi([1 20], 1);  
+    if left_rotation > 0
+        left_rotation = left_rotation - 1;
+        wb_motor_set_velocity(motor_left_front, -(velocity));
+        wb_motor_set_velocity(motor_left_back, -(velocity));
+    else
+        wb_motor_set_velocity(motor_left_front, velocity);
+        wb_motor_set_velocity(motor_left_back, velocity);
     end
+    if (right_rotation == 0) && (left_rotation == 0)
+        if (distance < 70) && (distance > 30)
+            count_rotations = count_rotations + 1;
+            if count_rotations == 1
+                right_rotation = 35;
+            elseif count_rotations == 2
+                left_rotation = 70;
+            elseif count_rotations == 3
+                left_rotation = 35;
+            end
+        end
+    end
+    if (count_rotations >= 1) && (distance == prev_distance) && (right_rotation == 0) && (left_rotation == 0)
+        count_rotations = 0;
+    end
+    prev_distance = distance;
+    disp(distance)
 
     my_image = wb_camera_get_image(camera);
     [display_out,tictac_count,IndexesOfMaxes,Pixels_left, Pixels_top] = camera_vision(my_image);
