@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.2641446531628613 -0.9525849842775257 -0.1510279773236011 1.1767933337621257
-  position -0.8749502703039115 0.41534010741262256 0.5678346533479817
+  orientation -0.004127545162584649 0.9978170694218446 0.06590947838765174 2.7764413176245286
+  position 0.23323964797870886 0.26912246661694705 -0.9977314659687923
   follow "rectangle arena"
 }
 TinkerbotsBase {
@@ -50,6 +50,8 @@ TinkerbotsBase {
   leftSlot TinkerbotsCube {
     frontSlot TinkerbotsMotor {
       name "motor_left_back"
+      upSlot TinkerbotsCube {
+      }
       backSlot TinkerbotsAxle {
         endSlot TinkerbotsWheel {
         }
@@ -68,6 +70,8 @@ TinkerbotsBase {
     frontSlot TinkerbotsMotor {
       rotation 0 0 1 -3.141592653589793
       name "motor_right_back"
+      upSlot TinkerbotsCube {
+      }
       frontSlot TinkerbotsAxle {
         endSlot TinkerbotsWheel {
         }
@@ -108,8 +112,9 @@ RectangleArena {
   }
 }
 Solid {
-  translation 0.0795401 0.0029982 0.512463
-  rotation 0.5773529358523396 -0.5773499358526729 0.5773479358528951 2.0944
+  translation -0.0504618 0.0164978 0.445663
+  rotation -0.935114083019432 0.25056002224471974 -0.2505620222448973 -1.6378453071795862
+  scale 2 2 2
   children [
     Shape {
       appearance Appearance {
@@ -129,9 +134,99 @@ Solid {
   ]
   name "solid(2)"
   boundingObject Capsule {
-    height 0.007
-    radius 0.003
-    subdivision 100
+    height 0.005
+    radius 0.006
+    subdivision 16
+  }
+  physics Physics {
+  }
+}
+Solid {
+  translation 0.0495401 0.0164984 0.412463
+  rotation 0.5773529358523396 -0.5773499358526729 0.5773479358528951 2.0944
+  scale 2 2 2
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          ambientIntensity 1
+          diffuseColor 1 1 1
+          emissiveColor 1 1 1
+          specularColor 1 0 0
+        }
+      }
+      geometry Capsule {
+        height 0.007
+        radius 0.003
+        subdivision 100
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject Capsule {
+    height 0.005
+    radius 0.006
+    subdivision 16
+  }
+  physics Physics {
+  }
+}
+Solid {
+  translation 0.0195401 0.0164991 0.342463
+  rotation 0.5773529358523396 -0.5773499358526729 0.5773479358528951 2.0944
+  scale 2 2 2
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          ambientIntensity 1
+          diffuseColor 1 1 1
+          emissiveColor 1 1 1
+          specularColor 1 0 0
+        }
+      }
+      geometry Capsule {
+        height 0.007
+        radius 0.003
+        subdivision 100
+      }
+    }
+  ]
+  name "solid(3)"
+  boundingObject Capsule {
+    height 0.006
+    radius 0.005
+    subdivision 16
+  }
+  physics Physics {
+  }
+}
+Solid {
+  translation 0.0307533 0.0165 0.215722
+  rotation -0.6776638586186652 0.5199868915148861 -0.5199858915150948 -1.950445307179586
+  scale 2 2 2
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          ambientIntensity 1
+          diffuseColor 1 1 1
+          emissiveColor 1 1 1
+          specularColor 1 0 0
+        }
+      }
+      geometry Capsule {
+        height 0.007
+        radius 0.003
+        subdivision 100
+      }
+    }
+  ]
+  name "solid(5)"
+  boundingObject Capsule {
+    height 0.005
+    radius 0.006
+    subdivision 16
   }
   physics Physics {
   }

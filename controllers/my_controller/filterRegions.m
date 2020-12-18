@@ -12,7 +12,7 @@ function properties = filterRegions(BW_in)
 BW_out = BW_in;
 
 % Filter image based on image properties.
-BW_out = bwpropfilt(BW_out, 'Area', [250, 7000]);
+BW_out = bwpropfilt(BW_out, 'Area', [300, 30000]);
 
 % Get properties.
 properties = regionprops(BW_out, {'Area', 'Eccentricity', 'EquivDiameter', 'EulerNumber', 'MajorAxisLength', 'MinorAxisLength', 'Orientation', 'Perimeter', 'BoundingBox'});

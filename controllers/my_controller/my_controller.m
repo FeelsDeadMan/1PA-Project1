@@ -64,6 +64,12 @@ wb_motor_set_velocity(finger_A, velocity);
 wb_motor_set_velocity(finger_B, velocity);
 wb_motor_set_velocity(finger_C, velocity);
 
+%wb_motor_set_available_force(finger_A, 0.06)
+%wb_motor_set_available_force(finger_B, 0.06)
+%wb_motor_set_available_force(finger_C, 0.06)
+
+wb_motor_enable_force_feedback(finger_A, TIME_STEP);
+
 wb_distance_sensor_enable(distance_sensor, TIME_STEP);
 
 % main loop:
@@ -73,7 +79,6 @@ wb_distance_sensor_enable(distance_sensor, TIME_STEP);
 while wb_robot_step(TIME_STEP) ~= -1
     
     distance = wb_distance_sensor_get_value(distance_sensor);
-    display(distance)
     if rotation_counter > 0
         rotation_counter = rotation_counter - 1;
         wb_motor_set_velocity(motor_right_front, -(velocity));
@@ -136,19 +141,25 @@ while wb_robot_step(TIME_STEP) ~= -1
             
             Pivot_1 = 1.25;
             Pivot_2 = 1.5;
-            Pivot_3 = 0.35;
-            grabber_pos = 0.5;
+            Pivot_3 = 0.37;
+            grabber_pos = 0.7;
             end
-            if distance < 21.5 && time < 3
+            if distance < 21.5 && time < 16
             time = time + 1;
-            grabber_pos = 0;
+            grabber_pos = 0.1;
             end
-            if time == 3
-            Pivot_1 = -1.25;
+            if time >= 16 && time < 45
+            Pivot_1 = 0;
             Pivot_2 = -1.5;
-            Pivot_3 = -0.35;    
+            Pivot_3 = -1.5;
+            time = time + 1;
+            wb_motor_get_force_feedback(finger_A)
             end
+            if time == 45
+            grabber_pos = 0.5;
+            time = 0;
             end
+           
 %          
 %             start_time = wb_robot_get_time()
 %             while start_time + 5 > wb_robot_get_time() 
